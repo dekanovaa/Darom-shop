@@ -129,3 +129,161 @@ document.addEventListener('DOMContentLoaded', function() {
     //     }
     // });
 });
+
+// modal swiper
+ // Initialize Swiper
+ const swiper = new Swiper('.swiper', {
+  allowTouchMove: false,
+  spaceBetween: 0,
+  on: {
+      slideChange: function () {
+          updateStepCounter();
+          updateProgressBar();
+          updateNavigation();
+      }
+  }
+});
+
+// DOM Elements
+const modals = document.getElementById('modal');
+const openModalBtn = document.getElementById('openModal');
+const closeModalBtn = document.getElementById('closeModal');
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
+const submitBtn = document.getElementById('submitBtn');
+const stepCounter = document.getElementById('stepCounter');
+const progressBar = document.getElementById('progressBar');
+const tireOptions = document.querySelectorAll('.tire-option');
+
+let selectedTireType = '';
+let currentStep = 0;
+
+// Modal controls
+openModalBtn.addEventListener('click', () => {
+  modals.classList.remove('hidden');
+  document.body.style.overflow = 'hidden';
+});
+
+closeModalBtn.addEventListener('click', closeModal);
+modal.addEventListener('click', (e) => {
+  if (e.target === modal) closeModal();
+});
+
+function closeModal() {
+  modals.classList.add('hidden');
+  document.body.style.overflow = 'auto';
+  resetModal();
+}
+
+function resetModal() {
+  swiper.slideTo(0);
+  currentStep = 0;
+  selectedTireType = '';
+  document.getElementById('wheelSize').value = '';
+  document.getElementById('city').value = '';
+  document.getElementById('phone').value = '';
+  tireOptions.forEach(option => {
+      option.classList.remove('selected');
+      const checkbox = option.querySelector('.w-3');
+      if (checkbox) checkbox.classList.add('hidden');
+  });
+  updateStepCounter();
+  updateProgressBar();
+  updateNavigation();
+}
+
+// Tire selection
+tireOptions.forEach(option => {
+  option.addEventListener('click', () => {
+      // Remove previous selection
+      tireOptions.forEach(opt => {
+          opt.classList.remove('selected');
+          const checkbox = opt.querySelector('.w-3');
+          if (checkbox) checkbox.classList.add('hidden');
+      });
+
+      // Add selection to clicked option
+      option.classList.add('selected');
+      const checkbox = option.querySelector('.w-3');
+      if (checkbox) checkbox.classList.remove('hidden');
+      
+      selectedTireType = option.dataset.type;
+  });
+});
+
+// Navigation
+prevBtn.addEventListener('click', () => {
+  if (currentStep > 0) {
+      currentStep--;
+      swiper.slideTo(currentStep);
+  }
+});
+
+nextBtn.addEventListener('click', () => {
+  if (validateCurrentStep()) {
+      if (currentStep < 3) {
+          currentStep++;
+          swiper.slideTo(currentStep);
+      }
+  }
+});
+
+submitBtn.addEventListener('click', () => {
+  if (validateCurrentStep()) {
+      alert('Форма отправлена! Мы свяжемся с вами в ближайшее время.');
+      closeModal();
+  }
+});
+
+// Validation
+function validateCurrentStep() {
+  switch (currentStep) {
+      case 0:
+          return selectedTireType !== '';
+      case 1:
+          return document.getElementById('wheelSize').value.trim() !== '';
+      case 2:
+          return document.getElementById('city').value.trim() !== '';
+      case 3:
+          return document.getElementById('phone').value.trim() !== '';
+      default:
+          return true;
+  }
+}
+
+// Update functions
+function updateStepCounter() {
+  stepCounter.textContent = `${currentStep + 1}/4`;
+}
+
+function updateProgressBar() {
+  const progress = ((currentStep + 1) / 4) * 100;
+  progressBar.style.width = `${progress}%`;
+}
+
+function updateNavigation() {
+  prevBtn.disabled = currentStep === 0;
+  
+  if (currentStep === 3) {
+      nextBtn.classList.add('hidden');
+      submitBtn.classList.remove('hidden');
+  } else {
+      nextBtn.classList.remove('hidden');
+      submitBtn.classList.add('hidden');
+  }
+}
+
+// Phone input formatting
+document.getElementById('phone').addEventListener('input', function(e) {
+  let value = e.target.value.replace(/\D/g, '');
+  if (value.length > 0) {
+      value = value.substring(0, 10);
+      const formatted = value.replace(/(\d{3})(\d{3})(\d{2})(\d{2})/, '($1) $2-$3-$4');
+      e.target.value = formatted;
+  }
+});
+
+// Initialize
+updateStepCounter();
+updateProgressBar();
+updateNavigation();
