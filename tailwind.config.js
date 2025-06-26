@@ -4,6 +4,7 @@ module.exports = {
       extend: {
         fontFamily: {
           arial: ['Arial', 'sans-serif'],
+          comfortaa: ['Comfortaa', 'cursive'],
         },
       },
     },
