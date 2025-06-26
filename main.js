@@ -1,15 +1,22 @@
 const openBtn = document.getElementById('openModalBtn');
 const closeBtn = document.getElementById('closeModalBtn');
 const modal = document.getElementById('mobileModal');
+const overlay = document.getElementById('modalOverlay');
 
 openBtn.addEventListener('click', () => {
   modal.classList.remove('translate-x-full');
   modal.classList.add('translate-x-0');
+
+  overlay.classList.remove('hidden');
+  overlay.classList.add('opacity-100');
 });
 
 closeBtn.addEventListener('click', () => {
   modal.classList.remove('translate-x-0');
   modal.classList.add('translate-x-full');
+
+  overlay.classList.add('hidden');
+  overlay.classList.remove('opacity-100');
 });
 
 // 
