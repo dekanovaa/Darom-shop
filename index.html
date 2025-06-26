@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <link rel="stylesheet" href="./style.css" />
     <title>Document</title>
     <link
@@ -25,8 +26,14 @@
         }
     </style>
   </head>
-  <body class="bg-black/90 font-arial">
+  <body class="bg-black/90 font-arial scroll-smooth">
     <!-- navbar -->
+    <a id="scrollToTopBtn"
+    class="fixed bottom-4 right-6 font-thin text-base md:w-[50px] w-[40px] md:h-[50px] h-[40px] text-center flex justify-center items-center rounded-full bg-gray-200 text-black hover:text-gray-100 opacity-0 pointer-events-none transition-opacity duration-300"
+    href="#hero">
+ <img src="./images/modal/up-removebg-preview.png" alt="">
+ </a>
+ 
     <section class="pt-6">
       <div
         class="max-w-[1300px] w-full mx-auto flex items-center md:justify-between justify-end xl:pl-[230px] xl:pr-[100px] pl-5 pr-5"
@@ -102,7 +109,7 @@
       </div>
     </section>
     <!-- hero -->
-    <section class="pb-[50px]">
+    <section id="hero" class="pb-[50px]">
       <div
         class="max-w-[1300px] w-full mx-auto flex flex-col-reverse md:flex-row items-center md:justify-between px-5"
       >
@@ -372,8 +379,8 @@
                   <div class="flex sm:flex-row flex-col lg:gap-28 sm:gap-12 gap-5 md:justify-normal justify-center">
                     <div>
                      <p class="text-[#949494] md:text-[20px] text-lg font-normal mb-2">Юридический адрес</p>
-                     <p class="md:text-lg text-[17px] text-gray-50 hover:opacity-75" >Г.САНКТ-ПЕТЕРБУРГ, <br>
-                      ПЕР 3-Й ВЕРХНИЙ, Д. 1, К. 1</p>
+                     <a class="md:text-lg text-[17px] text-gray-50 hover:opacity-75" >Г.САНКТ-ПЕТЕРБУРГ, <br>
+                      ПЕР 3-Й ВЕРХНИЙ, Д. 1, К. 1</a>
                     </div>
                     <div>
                       <p class="text-[#949494] md:text-[20px] text-lg font-normal mb-2">Реквизиты</p>
