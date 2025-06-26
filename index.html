@@ -7,22 +7,15 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <link rel="stylesheet" href="./style.css" />
     <title>Document</title>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
-    />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <style>
-        .swiper-pagination-bullet {
-            background: #d1d5db;
-            opacity: 1;
+    .swiper-button-next, .swiper-button-prev {
+            display: none;
         }
-        .swiper-pagination-bullet-active {
-            background: #374151;
-        }
-        .modal-backdrop {
-            backdrop-filter: blur(4px);
+        .country-dropdown {
+            max-height: 200px;
+            overflow-y: auto;
         }
     </style>
   </head>
@@ -40,12 +33,14 @@
       >
         <ul class="md:flex hidden items-center lg:gap-12 gap-8">
           <li class="navbar-item">
-            <a href="" class="text-white text-lg font-arial hover:opacity-80"
+            <a
+            
+            href="" class="text-white text-lg font-arial hover:opacity-80"
               >Подобрать шины</a
             >
           </li>
           <li class="navbar-item">
-            <a href="" class="text-white text-lg font-arial hover:opacity-80"
+            <a href="#about" class="text-white text-lg font-arial hover:opacity-80"
               >О нас</a
             >
           </li>
@@ -60,7 +55,7 @@
             >
           </li>
           <li class="navbar-item">
-            <a href="" class="text-white text-lg font-arial hover:opacity-80"
+            <a href="#contact" class="text-white text-lg font-arial hover:opacity-80"
               >Контакты</a
             >
           </li>
@@ -76,18 +71,20 @@
         </button>
       </div>
       <!-- modal -->
+      <div id="modalOverlay" class="fixed inset-0 bg-black/50 z-40 hidden transition-opacity duration-300"></div>
       <div
         id="mobileModal"
-        class="fixed flex flex-col justify-between top-0 right-0 h-full bg-black pr-8 pl-5 pt-5 shadow-lg transform translate-x-full transition-transform duration-300 z-50 pb-5"
+        class="fixed flex flex-col justify-between top-0 right-0 h-full bg-black pr-12 pl-6 pt-5 shadow-lg transform translate-x-full transition-transform duration-300 z-50 pb-5"
       >
         <button id="closeModalBtn" class="fixed top-5 right-5 cursor-pointer">
           <i class="fa-solid fa-xmark text-white text-2xl"></i>
         </button>
         <div class="flex flex-col pt-10">
           <a href="" class="text-white text-lg font-arial hover:opacity-80 pb-4"
+          id="openModal"
             >Подобрать шины</a
           >
-          <a href="" class="text-white text-lg font-arial hover:opacity-80 pb-4"
+          <a href="#about" class="text-white text-lg font-arial hover:opacity-80 pb-4"
             >О нас</a
           >
           <a href="" class="text-white text-lg font-arial hover:opacity-80 pb-4"
@@ -96,7 +93,7 @@
           <a href="" class="text-white text-lg font-arial hover:opacity-80 pb-4"
             >Отзывы</a
           >
-          <a href="" class="text-white text-lg font-arial hover:opacity-80 pb-4"
+          <a href="#contact" class="text-white text-lg font-arial hover:opacity-80 pb-4"
             >Контакты</a
           >
         </div>
@@ -171,7 +168,7 @@
       </div>
     </section>
     <!-- about -->
-    <section class="sm:pt-12 pt-6 pb-12">
+    <section class="sm:pt-12 pt-6 pb-12" id="about">
       <div class="max-w-[1300px] w-full mx-auto px-5">
         <div class="flex items-center justify-between sm:pb-14 pb-6 gap-6">
           <div>
@@ -341,7 +338,7 @@
         </div>
        </section>
        <!-- section contact -->
-        <section class="md:py-16 pt-8 pb-14 md:text-left text-center">
+        <section class="md:py-16 pt-8 pb-14 md:text-left text-center" id="contact">
           <div class="max-w-[1300px] w-full mx-auto px-5 flex md:flex-row flex-col gap-20">
             <div class="hidden md:flex w-[400px] h-[450px] rounded-[10px]">
               <iframe
@@ -379,8 +376,8 @@
                   <div class="flex sm:flex-row flex-col lg:gap-28 sm:gap-12 gap-5 md:justify-normal justify-center">
                     <div>
                      <p class="text-[#949494] md:text-[20px] text-lg font-normal mb-2">Юридический адрес</p>
-                     <a class="md:text-lg text-[17px] text-gray-50 hover:opacity-75" >Г.САНКТ-ПЕТЕРБУРГ, <br>
-                      ПЕР 3-Й ВЕРХНИЙ, Д. 1, К. 1</a>
+                     <p class="md:text-lg text-[17px] text-gray-50 hover:opacity-75" >Г.САНКТ-ПЕТЕРБУРГ, <br>
+                      ПЕР 3-Й ВЕРХНИЙ, Д. 1, К. 1</p>
                     </div>
                     <div>
                       <p class="text-[#949494] md:text-[20px] text-lg font-normal mb-2">Реквизиты</p>
@@ -393,7 +390,10 @@
           </div>
 
         </section>
+
+
         <!-- modal swiper -->
+
         <div id="modal" class="fixed inset-0 z-50 hidden">
           <!-- Backdrop -->
           <div class="modal-backdrop absolute inset-0 bg-black bg-opacity-50"></div>
@@ -542,10 +542,7 @@
           </div>
       </div>
 
-        
-   
-
-    <!-- script -->
    <script src="./main.js"></script>
+
   </body>
 </html>
